@@ -1,15 +1,15 @@
 from flask import Flask, render_template
 from newsapi import NewsApiClient
 import datetime as the_date
+from datetime import date
 
 app = Flask(__name__)
 
-
+today = date.today()
 @app.route('/')
 def index():
     newsapi = NewsApiClient(api_key="b0f75ce660c0466a9a98c2478f8abb62")
-    my_data = newsapi.get_top_headlines(sources="bbc-news")
-
+    my_data = newsapi.get_everything(sources="bbc-news", to=today, sort_by="popularity")
     articles = my_data['articles']
 
     desc = []
@@ -17,6 +17,7 @@ def index():
     img = []
     author = []
     time = []
+    url=[]
 
     for i in range(len(articles)):
         myarticles = articles[i]
@@ -25,11 +26,12 @@ def index():
         desc.append(myarticles['description'])
         img.append(myarticles['urlToImage'])
         author.append(myarticles['author'])
-        pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%S.%f%jZ").date()
+        url.append(myarticles['url'])
+        pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").date()
 
         time.append(pub_date.strftime("%B %d, %Y %H:%M %p"))
 
-    mylist = zip(news, desc, img, author, time)
+    mylist = zip(news, desc, img, author, time, url)
 
     return render_template('index.html', context=mylist)
 

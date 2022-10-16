@@ -70,7 +70,7 @@
 
 <!--template start-->
 	<div class="container main-news section mt-4">
-        {% for news, des, img, author, time in context %}
+        {% for news, des, img, author, time, url in context %}
 		<div class="row">
 			<div class="row mb-3 bb-1 pt-0">
 				<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
@@ -78,13 +78,13 @@
 				</div>
 				<div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
 					<h5>
-						<a href="detail.html">
+						<a href="{{url}}">
 							{{news}}
 						</a>
 					</h5>
 					<small class="date">{{time}}</small>
 					<p class="summary pt-3">{{des}}</p>
-					<small>Posted by {{author}}</small>
+					<small>From {{author}}</small>
 				</div>
 			</div>
 		</div>
@@ -108,8 +108,9 @@
 
 					<!-- Content -->
 					<h5 class="text-capitalize">One For All News</h5>
-					<p>"I want the news delivered unbiased. I thought that was the whole point with journalism."</p>
-					<p>-- Aaron McGruder</p>
+					<p>"If people in the media cannot decide whether they are in the business of reporting news or manufacturing propaganda,
+						it is all the more important that the public understand that difference, and choose their news sources accordingly."</p>
+					<p>-- Thomas Sowell</p>
 
 				</div>
 				<!-- Grid column -->
@@ -189,7 +190,6 @@
 										<a class="gplus-ic">
 											<i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
 										</a>
-								</ul>
 							</div>
 						</div>
 					</div>
