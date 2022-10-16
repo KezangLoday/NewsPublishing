@@ -113,7 +113,14 @@ small{
     border-left: 0.3rem solid #47a1d8;
     height: 0.75rem;
 }
-
+.sticky{
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+.no-pad{
+	padding-left: 0px!important;
+}
 /* end of body */
 
 

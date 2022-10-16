@@ -29,7 +29,7 @@ def index():
         url.append(myarticles['url'])
         pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").date()
 
-        time.append(pub_date.strftime("%B %d, %Y %H:%M %p"))
+        time.append(pub_date.strftime("%B %d, %Y"))
 
     mylist = zip(news, desc, img, author, time, url)
 
