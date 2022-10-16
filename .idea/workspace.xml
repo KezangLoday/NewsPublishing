@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="edb1e930-ca4a-42f8-aa04-1116b1fcdcf0" name="Changes" comment="more chnages">
+    <list default="true" id="edb1e930-ca4a-42f8-aa04-1116b1fcdcf0" name="Changes" comment="cnn aljezeera and bbc done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.py" beforeDir="false" afterPath="$PROJECT_DIR$/App.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cnn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cnn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665925261170</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="cnn aljezeera and bbc done">
+      <created>1665926733437</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665926733437</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +151,7 @@
     <MESSAGE value="first design" />
     <MESSAGE value="changes" />
     <MESSAGE value="more chnages" />
-    <option name="LAST_COMMIT_MESSAGE" value="more chnages" />
+    <MESSAGE value="cnn aljezeera and bbc done" />
+    <option name="LAST_COMMIT_MESSAGE" value="cnn aljezeera and bbc done" />
   </component>
 </project>

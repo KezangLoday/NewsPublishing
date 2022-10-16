@@ -136,5 +136,7 @@ footer a , footer p{
 footer h5 , footer .cpr{
 	color: #929292;
 }
-
+footer a:hover{
+	color: #47a1d8;
+}
 
