@@ -17,7 +17,7 @@ def index():
     img = []
     author = []
     time = []
-    url=[]
+    url = []
 
     for i in range(len(articles)):
         myarticles = articles[i]
@@ -39,13 +39,15 @@ def index():
 @app.route('/cnn')
 def cnn():
     newsapi = NewsApiClient(api_key="f8f06d634b0e48f6a9e41363832a25c5")
-    topheadlines = newsapi.get_top_headlines(sources="al-jazeera-english")
-
-    articles = topheadlines['articles']
+    my_data = newsapi.get_everything(sources="cnn", to=today, sort_by="popularity")
+    articles = my_data['articles']
 
     desc = []
     news = []
     img = []
+    author = []
+    time = []
+    url = []
 
     for i in range(len(articles)):
         myarticles = articles[i]
@@ -53,11 +55,72 @@ def cnn():
         news.append(myarticles['title'])
         desc.append(myarticles['description'])
         img.append(myarticles['urlToImage'])
+        author.append(myarticles['author'])
+        url.append(myarticles['url'])
+        pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").date()
 
-    mylist = zip(news, desc, img)
+        time.append(pub_date.strftime("%B %d, %Y"))
+
+    mylist = zip(news, desc, img, author, time, url)
 
     return render_template('cnn.html', context=mylist)
+@app.route('/aljazeera')
+def aljazeera():
+    newsapi = NewsApiClient(api_key="f8f06d634b0e48f6a9e41363832a25c5")
+    my_data = newsapi.get_everything(sources="al-jazeera-english", to=today, sort_by="popularity")
+    articles = my_data['articles']
 
+    desc = []
+    news = []
+    img = []
+    author = []
+    time = []
+    url = []
+
+    for i in range(len(articles)):
+        myarticles = articles[i]
+
+        news.append(myarticles['title'])
+        desc.append(myarticles['description'])
+        img.append(myarticles['urlToImage'])
+        author.append(myarticles['author'])
+        url.append(myarticles['url'])
+        pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").date()
+
+        time.append(pub_date.strftime("%B %d, %Y"))
+
+    mylist = zip(news, desc, img, author, time, url)
+
+    return render_template('aljazeera.html', context=mylist)
+
+# @app.route('/thebhutanese')
+# def thebhutanese():
+#     newsapi = NewsApiClient(api_key="f8f06d634b0e48f6a9e41363832a25c5")
+#     my_data = newsapi.get_everything(sources="cnn", to=today, sort_by="popularity")
+#     articles = my_data['articles']
+#
+#     desc = []
+#     news = []
+#     img = []
+#     author = []
+#     time = []
+#     url = []
+#
+#     for i in range(len(articles)):
+#         myarticles = articles[i]
+#
+#         news.append(myarticles['title'])
+#         desc.append(myarticles['description'])
+#         img.append(myarticles['urlToImage'])
+#         author.append(myarticles['author'])
+#         url.append(myarticles['url'])
+#         pub_date = the_date.datetime.strptime(myarticles['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").date()
+#
+#         time.append(pub_date.strftime("%B %d, %Y"))
+#
+#     mylist = zip(news, desc, img, author, time, url)
+#
+#     return render_template('cnn.html', context=mylist)
 
 if __name__ == "__main__":
     app.run(debug=True)
