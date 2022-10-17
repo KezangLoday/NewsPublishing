@@ -7,15 +7,15 @@ import pyrebase
 
 app = Flask(__name__)
 
-
+#firbase config
 config= {
-    'apiKey': "AIzaSyCm_uspbQkt9xt8xh3OGRdQsKQGF0NlR9k",
-    'authDomain': "authenticatepy-88ab7.firebaseapp.com",
-    'projectId': "authenticatepy-88ab7",
-    'storageBucket': "authenticatepy-88ab7.appspot.com",
-    'messagingSenderId': "2045932540",
-    'appId': "1:2045932540:web:d01778e9e72dc6c3eef879",
-    'measurementId': "G-BTHZ66KQES",
+    'apiKey': "AIzaSyDktl8sfhBIe6-vq2xM9va7Qie-DOlE6uA",
+    'authDomain': "authenticatepy-532b9.firebaseapp.com",
+    'projectId': "authenticatepy-532b9",
+    'storageBucket': "authenticatepy-532b9.appspot.com",
+    'messagingSenderId': "283881868950",
+    'appId': "1:283881868950:web:84cd06e2b1c237e25d3cb7",
+    'measurementId': "G-XSZQD45572",
     'databaseURL': ""
 }
 
@@ -68,6 +68,8 @@ def signup():
 
     return render_template('signup.html')
 
+
+#Extraction news
 @app.route('/')
 def index():
     newsapi = NewsApiClient(api_key="b0f75ce660c0466a9a98c2478f8abb62")
