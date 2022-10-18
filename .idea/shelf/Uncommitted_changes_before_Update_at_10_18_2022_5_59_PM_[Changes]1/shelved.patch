@@ -1,0 +1,504 @@
+Index: tweet.py
+===================================================================
+diff --git a/tweet.py b/tweet.py
+deleted file mode 100644
+--- a/tweet.py	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-from flask import Flask, render_template,session,request,redirect
+\ No newline at end of file
+Index: templates/layout.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/layout.html b/templates/layout.html
+--- a/templates/layout.html	
++++ b/templates/layout.html	
+@@ -13,6 +13,11 @@
+ 	<!--CSS Link-->
+ 	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+ 
++	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
++		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
++		crossorigin="anonymous"></script>
++	<script src="https://kit.fontawesome.com/bb15d0d4a2.js" crossorigin="anonymous"></script>
++
+ 
+ </head>
+ 
+@@ -21,7 +26,7 @@
+ 	<div class="container">
+ 		<div class="logo-wrapper d-flex align-items-center">
+ 			<h1>
+-				<a href="index.html">
++				<a class="{{'active' if active_page == 'bbc' else ''}}" href="{{url_for('index')}}">
+ 					All For One News
+ 				</a>
+ 			</h1>
+@@ -30,30 +35,30 @@
+ 
+ 	<div class="container-fluid menu ">
+ 		<div class="container">
+-			<nav class="navbar navbar-expand-md navbar-dark">
++				<nav class="navbar navbar-expand-md navbar-dark">
+ 
+-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+-					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+-					<span class="navbar-toggler-icon"></span>
+-				</button>
+-				<div class="collapse navbar-collapse" id="navbarNav">
++					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
++						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
++						<span class="navbar-toggler-icon"></span>
++					</button>
++					<div class="collapse navbar-collapse" >
+ 
+-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 leftside">
++						<ul class="navbar-nav me-auto mb-2 mb-lg-0 leftside" id="navbarNav">
+ 
+ 							<li class="nav-item">
+-								<a class="nav-link active" href="{{url_for('index')}}" aria-current="page" >BBC</a>
++								<a class="nav-link {{'active' if active_page == 'bbc' else ''}}" href="{{url_for('index')}}" aria-current="page" >BBC</a>
+ 							</li>
+ 							<li class="nav-item">
+-								<a class="nav-link" href="{{url_for('cnn')}}">CNN</a>
++								<a class="nav-link {{'active' if active_page == 'cnn' else ''}} " href="{{url_for('cnn')}}">CNN</a>
+ 							</li>
+ 							<li class="nav-item">
+-								<a class="nav-link" href="{{url_for('aljazeera')}}">Aljazeera</a>
++								<a class="nav-link {{'active' if active_page == 'aljazeera' else ''}} " href="{{url_for('aljazeera')}}">Aljazeera</a>
+ 							</li>
+ 							<li class="nav-item">
+-								<a class="nav-link" href="{{url_for('aljazeera')}}">The Bhutanese</a>
++								<a class="nav-link {{'active' if active_page == 'thebhutanese' else ''}} " href="{{url_for('thebhutanese')}}">The Bhutanese</a>
+ 							</li>
+ 							<li class="nav-item">
+-								<a class="nav-link " href="{{url_for('aljazeera')}}">About Us</a>
++								<a class="nav-link {{'active' if active_page == 'aboutus' else ''}} " href="{{url_for('aljazeera')}}">About Us</a>
+ 							</li>
+ 						</ul>
+ 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0 rightside">
+@@ -67,15 +72,28 @@
+ 								<a href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Log Out</a>
+ 							</li>
+ 						</ul>
+-				</div>
+-			</nav>
+-		</div>
+-	<script type="text/javascript" src={{url_for('static', filename='script.js')}}></script>
++					</div>
++				</nav>
++			</div>
++				<script>
++					var linkContainer = document.getElementById("navbarNav");
++					var clicks = linkContainer.getElementByClassName("nav-link");
++					for(var i=0; i<clicks.length; i++){
++						clicks[i].addEventListener('click', function() {
++						var current = document.getElementByClassName("active");
++						current[0].className = current[0].className.replace(" active");
++						this.className += " active";
++						})
++					}
++				</script>
++			<script type="text/javascript" src={{url_for('static', filename='script.js')}}></script>
++		</div>
+ 	</div>
+     <!-- end navbar -->
+ 
+     <!--jinja2 template inheritance-->
+-    {% block body %}{% endblock %}
++    {% block body %}
++	{% endblock %}
+ 
+     <!-- Footer -->
+ 	<footer class="page-footer font-small pt-4">
+@@ -196,10 +214,7 @@
+ 
+ 
+ </body>
+-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+-		crossorigin="anonymous"></script>
+-	<script src="https://kit.fontawesome.com/bb15d0d4a2.js" crossorigin="anonymous"></script>
++
+ 
+ </html>
+ 
+Index: static/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/static/style.css b/static/style.css
+--- a/static/style.css	
++++ b/static/style.css	
+@@ -140,3 +140,16 @@
+ 	color: #47a1d8;
+ }
+ 
++/* sign up and login back ground*/
++
++.vh-100 {
++    background-image : url({{ url_for('static', filename='background.webp')}});
++    filter: blur(8px);
++    -webkit-filter: blur(8px);
++
++    height:100%;
++
++    background-position: center;
++    background-repeat: no-repeat;
++    background-size: cover;
++}
+\ No newline at end of file
+Index: templates/aljazeera.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/aljazeera.html b/templates/aljazeera.html
+--- a/templates/aljazeera.html	
++++ b/templates/aljazeera.html	
+@@ -1,5 +1,8 @@
+ {% extends 'layout.html' %}
+ {% block title %} Aljazeera News {% endblock %}
++
++{% set active_page = "aljazeera" %}
++
+ {% block body%}
+ 
+ <!--template start-->
+Index: templates/theBhutanese.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/theBhutanese.html b/templates/theBhutanese.html
+--- a/templates/theBhutanese.html	
++++ b/templates/theBhutanese.html	
+@@ -1,23 +1,27 @@
+ {% extends 'layout.html' %}
+-{% block title %} BBC News {% endblock %}
++{% block title %} The Bhutanese {% endblock %}
++
++{% set active_page = "thebhutanese" %}
++
++
+ {% block body%}
+ 
+ <!--template start-->
+ 	<div class="container main-news section mt-4">
+-        {% for news, des, img, author, time, url in context %}
++        {% for tweets, author, time in context %}
+ 		<div class="row">
+ 			<div class="row mb-3 bb-1 pt-0">
+ 				<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+-					<img class="thumb" src="{{img}}" alt="Image can't be loaded">
++					<img class="thumb" src="" alt="Image can't be loaded">
+ 				</div>
+ 				<div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+ 					<h5>
+-						<a href="{{url}}">
+-							{{news}}
++						<a href="">
++							{{tweets}}
+ 						</a>
+ 					</h5>
+ 					<small class="date">{{time}}</small>
+-					<p class="summary pt-3">{{des}}</p>
++					<p class="summary pt-3"></p>
+ 					<small>From {{author}}</small>
+ 				</div>
+ 			</div>
+Index: templates/aboutus.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/aboutus.html b/templates/aboutus.html
+--- a/templates/aboutus.html	
++++ b/templates/aboutus.html	
+@@ -1,10 +1,3 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-    <meta charset="UTF-8">
+-    <title>Title</title>
+-</head>
+-<body>
+ 
+-</body>
+-</html>
+\ No newline at end of file
++
++{% set active_page = "bbc" %}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,9 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="edb1e930-ca4a-42f8-aa04-1116b1fcdcf0" name="Changes" comment="cnn aljezeera and bbc done">
+-      <change afterPath="$PROJECT_DIR$/tweet.py" afterDir="false" />
++    <list default="true" id="edb1e930-ca4a-42f8-aa04-1116b1fcdcf0" name="Changes" comment="revert">
++      <change afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/tweet_api.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/App.py" beforeDir="false" afterPath="$PROJECT_DIR$/App.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Login.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aboutus.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/aljazeera.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aljazeera.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/cnn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cnn.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/theBhutanese.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/theBhutanese.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/tweet.py" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,15 +45,17 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "last_opened_file_path": "C:/Users/DELL/PycharmProjects/NewPublishing",
+-    "run.code.analysis.last.selected.profile": "aDefault"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/PycharmProjects/NewPublishing&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\DELL\PycharmProjects\NewPublishing\static" />
+@@ -82,6 +96,27 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="tweet_api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="NewPublishing" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tweet_api.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -93,6 +128,7 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Python.App" />
++        <item itemvalue="Python.tweet_api" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -140,7 +176,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1665938871020</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="cnn aljezeera and bbc done">
++      <created>1665940605717</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1665940605717</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -148,7 +191,19 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="master" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+Index: templates/signup.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/signup.html b/templates/signup.html
+--- a/templates/signup.html	
++++ b/templates/signup.html	
+@@ -8,6 +8,7 @@
+     <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
++    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+ </head>
+ 
+ <body>
+Index: templates/Login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/Login.html b/templates/Login.html
+--- a/templates/Login.html	
++++ b/templates/Login.html	
+@@ -8,11 +8,13 @@
+     <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
++    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+ </head>
+ 
+ <body>
+ 
+-    <section class="vh-100" style="background-color: #508bfc;">
++    <section class="vh-100"
++    background = "{{ url_for('static', filename='background.jpg')}}">
+         <div class="container py-5 h-100">
+           <div class="row d-flex justify-content-center align-items-center h-100">
+             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+@@ -31,7 +33,7 @@
+                     
+                     </div>
+                     <div class="form-outline mb-4">
+-                    <label>Don't have a Account?<a href="/signup">Sign up</a></label>
++                    <label>Don't have a Account?<a href="/signup"> Sign up</a></label>
+                     </div>
+       
+                   
+Index: tweet_api.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tweet_api.py b/tweet_api.py
+new file mode 100644
+--- /dev/null	
++++ b/tweet_api.py	
+@@ -0,0 +1,44 @@
++import tweepy
++import configparser
++
++import pandas as pd
++
++#reading from configs for security
++config = configparser.ConfigParser()
++config.read('config.ini')
++
++api_key = config['twitter']['api_key']
++api_key_secret = config['twitter']['api_key_secret']
++
++access_token = config['twitter']['access_token']
++access_token_secret = config['twitter']['access_token_secret']
++
++#authenthication of app to twitter api
++auth = tweepy.OAuthHandler(api_key, api_key_secret)
++auth.set_access_token(access_token, access_token_secret)
++
++
++
++#using to get public tweets
++api = tweepy.API(auth)
++
++number_of_tweets = 5
++store_tweets = []
++author = []
++time = []
++
++# for i in tweepy.Cursor(api.user_timeline, id="thebhutanese", tweet_mode="extended").items(number_of_tweets):
++#    # store_tweets.append(i.full_text)
++#     author.append(i.author)
++#     time.append(i.created_at)
++
++
++
++df = pd.DataFrame({ 'time': time, 'author': author})
++
++
++if __name__ == "__main__":
++    #print(df)
++    customerinfo = api.get_user('@thebhutanese')
++    print
++    "entities :", customerinfo.entities.get('description').get('urls')
+\ No newline at end of file
+Index: templates/cnn.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/cnn.html b/templates/cnn.html
+--- a/templates/cnn.html	
++++ b/templates/cnn.html	
+@@ -1,7 +1,9 @@
+ {% extends 'layout.html' %}
+ {% block title %} CNN News {% endblock %}
++
++{% set active_page = "cnn" %}
++
+ {% block body%}
+-
+ <!--template start-->
+ 	<div class="container main-news section mt-4">
+         {% for news, des, img, author, time, url in context %}
+Index: templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/index.html b/templates/index.html
+--- a/templates/index.html	
++++ b/templates/index.html	
+@@ -1,5 +1,8 @@
+ {% extends 'layout.html' %}
+ {% block title %} BBC News {% endblock %}
++
++{% set active_page = "bbc" %}
++
+ {% block body%}
+ 
+ <!--template start-->
