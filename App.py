@@ -188,11 +188,11 @@ def thebhutanese():
     image = []
     time = []
 
-    for i in tweepy.Cursor(api.user_timeline, id="thebhutanese", include_entities=True, tweet_mode="extended").items(number_of_tweets):
+    for i in tweepy.Cursor(api.user_timeline, screen_name="thebhutanese", tweet_mode="extended").items(number_of_tweets):
         store_tweets.append(i.full_text)
-        author.append(i._json)
+        author.append(i.source_url)
 
-       # image.append(i.entities['media']['media_url'])
+        #image.append(i.entities['media']['media_url'])
         time.append(i.created_at)
 
     mylist = zip(store_tweets, author, time)
@@ -207,3 +207,5 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+

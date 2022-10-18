@@ -26,19 +26,20 @@ number_of_tweets = 5
 store_tweets = []
 author = []
 time = []
+image = []
 
-# for i in tweepy.Cursor(api.user_timeline, id="thebhutanese", tweet_mode="extended").items(number_of_tweets):
-#    # store_tweets.append(i.full_text)
-#     author.append(i.author)
-#     time.append(i.created_at)
+for i in tweepy.Cursor(api.user_timeline, screen_name="thebhutanese", tweet_mode="extended", include_entities=True,).items(number_of_tweets):
+   #store_tweets.append(i.full_text)
+    author.append(i.author)
+    time.append(i.created_at)
+    image.append(i.entities['media']['media_url'])
 
 
-
-df = pd.DataFrame({ 'time': time, 'author': author})
+df = pd.DataFrame({ 'time': time, 'author': image})
 
 
 if __name__ == "__main__":
-    #print(df)
-    customerinfo = api.get_user('@thebhutanese')
-    print
-    "entities :", customerinfo.entities.get('description').get('urls')
+    print(df)
+    # customerinfo = api.get_user('@thebhutanese')
+    # print
+    # "entities :", customerinfo.entities.get('description').get('urls')

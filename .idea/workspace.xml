@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edb1e930-ca4a-42f8-aa04-1116b1fcdcf0" name="Changes" comment="tuesday update">
+      <change afterPath="$PROJECT_DIR$/templates/bbs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.py" beforeDir="false" afterPath="$PROJECT_DIR$/App.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/theBhutanese.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/theBhutanese.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tweet_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tweet_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -49,7 +54,7 @@
       <recent name="C:\Users\DELL\PycharmProjects\NewPublishing\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.App">
+  <component name="RunManager" selected="Python.tweet_api">
     <configuration name="App" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NewPublishing" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,8 +120,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.App" />
         <item itemvalue="Python.tweet_api" />
+        <item itemvalue="Python.App" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +183,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666100755233</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="tuesday update">
+      <created>1666101683295</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666101683297</updated>
+    </task>
+    <task id="LOCAL-00009" summary="tuesday update">
+      <created>1666101705855</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666101705855</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
