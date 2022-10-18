@@ -140,3 +140,16 @@ footer a:hover{
 	color: #47a1d8;
 }
 
+/* sign up and login back ground*/
+
+.vh-100 {
+    background-image : url({{ url_for('static', filename='background.webp')}});
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    height:100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

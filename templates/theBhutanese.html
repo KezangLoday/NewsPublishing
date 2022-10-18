@@ -1,23 +1,27 @@
 {% extends 'layout.html' %}
-{% block title %} BBC News {% endblock %}
+{% block title %} The Bhutanese {% endblock %}
+
+{% set active_page = "thebhutanese" %}
+
+
 {% block body%}
 
 <!--template start-->
 	<div class="container main-news section mt-4">
-        {% for news, des, img, author, time, url in context %}
+        {% for tweets, author, time in context %}
 		<div class="row">
 			<div class="row mb-3 bb-1 pt-0">
 				<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-					<img class="thumb" src="{{img}}" alt="Image can't be loaded">
+					<img class="thumb" src="" alt="Image can't be loaded">
 				</div>
 				<div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
 					<h5>
-						<a href="{{url}}">
-							{{news}}
+						<a href="">
+							{{tweets}}
 						</a>
 					</h5>
 					<small class="date">{{time}}</small>
-					<p class="summary pt-3">{{des}}</p>
+					<p class="summary pt-3"></p>
 					<small>From {{author}}</small>
 				</div>
 			</div>
