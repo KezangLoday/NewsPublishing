@@ -58,23 +58,28 @@
 								<a class="nav-link {{'active' if active_page == 'thebhutanese' else ''}} " href="{{url_for('thebhutanese')}}">The Bhutanese</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link {{'active' if active_page == 'bbs' else ''}} " href="{{url_for('bbs')}}">BBS</a>
+								<a class="nav-link {{'active' if active_page == 'bbs' else ''}} " href="#">BBS</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link {{'active' if active_page == 'aboutus' else ''}} " href="{{url_for('aljazeera')}}">About Us</a>
+								<a class="nav-link {{'active' if active_page == 'aboutus' else ''}} " href="{{url_for('aboutus')}}">About Us</a>
 							</li>
 
 						</ul>
+
 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0 rightside">
+							
+							
 							<li class="nav-item ">
 								<a href="/signup"><i class="fa-solid fa-user"></i> Sign Up</a>
 							</li>
 							<li class="nav-item">
 								<a href="/login"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
 							</li>
+							
 							<li class="nav-item">
 								<a href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Log Out</a>
 							</li>
+							
 						</ul>
 					</div>
 				</nav>
@@ -90,7 +95,7 @@
 						})
 					}
 				</script>
-			<script type="text/javascript" src={{url_for('static', filename='script.js')}}></script>
+			<script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
 		</div>
 	</div>
     <!-- end navbar -->

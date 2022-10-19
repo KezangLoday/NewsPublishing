@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request, redirect
+from flask import Flask, render_template, session, request, redirect,flash,url_for
 from newsapi import NewsApiClient
 import datetime as the_date
 from datetime import date
@@ -18,12 +18,13 @@ config= {
     'messagingSenderId': "283881868950",
     'appId': "1:283881868950:web:84cd06e2b1c237e25d3cb7",
     'measurementId': "G-XSZQD45572",
-    'databaseURL': ""
+    'databaseURL': "https://authenticatepy-532b9-default-rtdb.asia-southeast1.firebasedatabase.app/"
 }
 
 #starting your firebase
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
+db=firebase.database()
 
 app.secret_key = 'secret'
 
@@ -71,6 +72,62 @@ def signup():
 
 today = date.today()
 #getting todays date so that it can be passed to the API to get the latest News
+
+
+@app.route('/aboutus')
+def aboutus():
+    all_data= db.child("feedData").get()
+    
+    
+    return render_template('aboutus.html',employees= all_data)
+
+#inserting data
+@app.route('/insert',methods=['POST'])
+def insert():
+    if request.method== 'POST':
+        name= request.form['name']
+        email= request.form['email']
+        feed= request.form['feed']
+    
+    my_data={'name':name,'email':email,'feedback':feed}
+    db.child("feedData").push(my_data)
+    
+    #message input in html
+    flash("Feedback added successful")
+
+    return redirect(url_for('aboutus'))
+
+
+#update the details
+@app.route('/update',methods=['GET','POST'])
+def update():
+    if request.method== 'POST':
+        my_data= request.form.get('id')
+
+        name= request.form['name']
+        email= request.form['email']
+        feed= request.form['feed']
+
+        db.child("feedData").child(my_data).update( { "name": name, "email": email, "feedback":feed })
+
+      
+        
+        flash("Feedback update successful")
+
+        return redirect(url_for('aboutus')) 
+
+        
+#delete data
+
+@app.route('/delete/<id>/', methods=['GET','POST'])
+def delete(id):
+    my_data= id
+    db.child("feedData").child(my_data).remove()
+
+    flash("Employee deleted successful")
+
+    return redirect(url_for('aboutus'))
+
 
 @app.route('/')
 def index():
