@@ -93,20 +93,43 @@ body a:hover{
 .section{
 	border-bottom: 1px solid #eee;
 	padding-bottom: 20px;}
+
 small{
 	color: #999;
 }
+
 .main-news{
 	margin-top: 20px;
 }
 .main-news h3{
 	line-height: 0.75;
 }
+
 .main-news h3 a{
 	font-size: 17px;
 	text-decoration: none;
 	font-weight: 600;
 }
+
+.section-title{
+	position: relative;
+	margin-bottom: 20px;
+}
+.section-title span{
+	font-weight: 400;
+	font-size: 17px;
+	color: #519ac5fc;
+}
+.section-title span:after{
+	content: '';
+	position: absolute;
+	background: #519ac5fc;
+	width: 50px;
+	height: 2px;
+	left: 0;
+	bottom: 0;
+}
+
 .container .row .date::before {
     content: " ";
     margin-right: 0.5rem;
