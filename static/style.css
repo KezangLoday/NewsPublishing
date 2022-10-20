@@ -193,9 +193,9 @@ html{
 	text-decoration: none;
 	color: #555;
   }
-  .bg-white .row .centered{
+  .bg-white .container .centered{
 	font-family: 'Red Hat Display', sans-serif;
-	size: 20rem;
+	size: 5rem;
   }
   .bg-white p{
 	color: #6c757d;
