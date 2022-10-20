@@ -27,6 +27,10 @@ body a:hover{
 	width: 100%;
 }
 
+.container .logo-wrapper .mymenu a:hover{
+    color: #47a1d8;
+}
+
 
 
 /* nav bar */
@@ -163,6 +167,6 @@ footer a:hover{
 }
 
 html{
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 /* sign up and login back ground*/
