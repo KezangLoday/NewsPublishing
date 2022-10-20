@@ -1,31 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 
-
-
-{% block title %} Home {% endblock %}
-
+{% block title %} About Us{% endblock %}
 
 {% block body %}
 
 
-
-<div class="container">
+<div class="container main-news section mt-4">
     <div class="row">
         <div class="col md-12">
             <div class="jumbotron p-3">
-                <h2> <b>Feedback <Section></Section></b> <button type="button" class="btn btn-success " data-toggle="modal"
-                    data-target="#mymodal" style="float: right">Add Feedback</button></h2>
+                <h2> <b>Feedback <Section></Section></b> <button type="button" class="btn btn-success " data-bs-toggle="modal"
+                    data-bs-target="#mymodal" style="float: right">Add Feedback</button></h2>
                     
                     <!-- successful message -->
                     {% with messages= get_flashed_messages() %}
-                    
-                    
+
                     {% if messages %}
                     
                     {% for message in messages %}
 
                     <div class="alert alert-success alert-dismissable" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+                        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close" style="float: right">
 
                             <span aria-hidden="true">x</span>
                         </button>
@@ -62,7 +57,7 @@
                             <td>{{row.val()["email"]}}</td>
                             <td>{{row.val()["feedback"]}}</td>
                             <td>
-                                <a href="/update/{{row.key()}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.key()}}">Edit</a>
+                                <a href="/update/{{row.key()}}" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-target="#modaledit{{row.key()}}">Edit</a>
                                 <a href="/delete/{{row.key()}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">Delete</a>
                             </td>
                         </tr>
@@ -189,4 +184,4 @@
 </div>
 
 
-        {% endblock %}
+{% endblock %}

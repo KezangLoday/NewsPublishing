@@ -6,7 +6,6 @@ import tweepy
 import configparser
 import pyrebase
 
-
 app = Flask(__name__)
 
 #firbase config
