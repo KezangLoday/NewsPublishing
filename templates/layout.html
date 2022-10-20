@@ -47,17 +47,17 @@
 				</a>
 			</h1>
 
-			<div class="dropdown ms-auto p-3 mb-2 mb-lg-0">
-				 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fa-solid fa-user"></i>
-				 </button>
-				 <div class="dropdown-menu p-3 mymenu"  aria-labelledby="dropdownMenuButton">
-					 <a class="dropdown-item" style="display:inline;" href="/signup"><i class=" fa-solid fa-user " ></i> Sign Up</a>
-					 <a class="dropdown-item" href="/login"><i class=" fa-solid fa-right-to-bracket"></i> Log In</a>
-					 <a class="dropdown-item" href="#"> <i class="fa-solid fa-bookmark"></i>  Saved News</a>
-					 <a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
-				 </div>
-			</div>
+<!--			<div class="dropdown ms-auto p-3 mb-2 mb-lg-0">-->
+<!--				 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--						<i class="fa-solid fa-user"></i>-->
+<!--				 </button>-->
+<!--				 <div class="dropdown-menu p-3 mymenu"  aria-labelledby="dropdownMenuButton">-->
+<!--					 <a class="dropdown-item" style="display:inline;" href="/signup"><i class=" fa-solid fa-user " ></i> Sign Up</a>-->
+<!--					 <a class="dropdown-item" href="/login"><i class=" fa-solid fa-right-to-bracket"></i> Log In</a>-->
+<!--					 <a class="dropdown-item" href="#"> <i class="fa-solid fa-bookmark"></i>  Saved News</a>-->
+<!--					 <a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>-->
+<!--				 </div>-->
+<!--			</div>-->
 		</div>
 	</div>
 
@@ -96,8 +96,9 @@
 
 					<ul class=" navbar-nav ms-auto mb-2 mb-lg-0 rightside">
 						<li class="nav-item">
-							<form class="d-flex " role="search">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<form method="POST" action="{{url_for('')}}" class="d-flex " role="search">
+								{{form.hidden_tag()}}
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
 							<button class="btn btn-outline-primary" type="submit">Search</button>
 							</form>
 						</li>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request, redirect,flash,url_f
 from newsapi import NewsApiClient
 import datetime as the_date
 from datetime import date
+from webforms import SearchForm
 import tweepy
 import configparser
 import pyrebase
@@ -27,7 +28,6 @@ db=firebase.database()
 
 app.secret_key = 'secret'
 
-today = date.today()
 
 
 # logining into the website
@@ -118,7 +118,7 @@ def update():
         
 #delete data
 
-@app.route('/delete/<id>/', methods=['GET','POST'])
+@app.route('/delete/<id>/', methods=['GET', 'POST'])
 def delete(id):
     my_data= id
     db.child("feedData").child(my_data).remove()
@@ -126,6 +126,21 @@ def delete(id):
     flash("Employee deleted successful")
 
     return redirect(url_for('aboutus'))
+
+
+# #pass stuff to navbar
+# @app.context_processor
+# def base():
+#     form = SearchForm()
+#     return  dict(form=form)
+#
+# # Search Function
+#
+# def search():
+#     form = SearchForm()
+#     if form.validate_on_submit():
+#         post.searched = form.searched.data
+#         return render_template("index.html", form=form, searched=post.searched)
 
 
 @app.route('/')
