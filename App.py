@@ -33,10 +33,9 @@ today = date.today()
 # logining into the website
 @app.route("/login", methods=['POST', 'GET'])
 def login():
-    # if successful login
+   
 
-    #if ('user' in session):
-        #return redirect('/')
+   
 
     # checking the info
     if request.method == 'POST':
@@ -45,7 +44,7 @@ def login():
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             session['user'] = email
-            return redirect('/')
+            return redirect(url_for('index'))
         except:
             return 'Failed to Login, Your username or password is incorrect'
 
