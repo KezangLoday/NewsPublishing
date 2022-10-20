@@ -36,16 +36,17 @@ today = date.today()
 def login():
     # if successful login
 
-    if ('user' in session):
-        return redirect('/')
+    #if ('user' in session):
+        #return redirect('/')
 
     # checking the info
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('pass')
+        email = request.form['email']
+        password = request.form['pass']
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             session['user'] = email
+            return redirect('/')
         except:
             return 'Failed to Login, Your username or password is incorrect'
 
